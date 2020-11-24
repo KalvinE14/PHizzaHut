@@ -17,6 +17,7 @@ class CreateTransactionHeadersTable extends Migration
             $table->id();
             $table->foreign('user_id')->references('userID')->on('users')->onDelete('cascade');
             $table->foreignId('user_id');
+            $table->string('status');
             $table->timestamps();
         });
     }
