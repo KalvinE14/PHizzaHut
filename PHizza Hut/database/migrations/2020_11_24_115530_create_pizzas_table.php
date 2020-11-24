@@ -14,12 +14,11 @@ class CreatePizzasTable extends Migration
     public function up()
     {
         Schema::create('pizzas', function (Blueprint $table) {
-            $table->id('pizzaID');
+            $table->id('pizza_id');
             $table->string('pizza_name');
             $table->string('description');
             $table->integer('price');
             $table->string('image');
-            $table->timestamps();
         });
     }
 
