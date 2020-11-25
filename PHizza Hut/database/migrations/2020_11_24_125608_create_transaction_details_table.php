@@ -14,7 +14,7 @@ class CreateTransactionDetailsTable extends Migration
     public function up()
     {
         Schema::create('transaction_details', function (Blueprint $table) {
-            $table->foreign('transaction_id')->references('id')->on('transaction_headers')->onDelete('cascade');
+            $table->foreign('transaction_id')->references('transaction_id')->on('transaction_headers')->onDelete('cascade');
             $table->foreignId('transaction_id');
             $table->foreign('pizza_id')->references('pizza_id')->on('pizzas')->onDelete('cascade');
             $table->foreignId('pizza_id');

@@ -14,7 +14,7 @@ class CreateTransactionHeadersTable extends Migration
     public function up()
     {
         Schema::create('transaction_headers', function (Blueprint $table) {
-            $table->id();
+            $table->id('transaction_id');
             $table->foreign('user_id')->references('user_id')->on('users')->onDelete('cascade');
             $table->foreignId('user_id');
             $table->string('status');
