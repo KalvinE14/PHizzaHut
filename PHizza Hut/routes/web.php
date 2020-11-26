@@ -14,3 +14,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'PizzaController@index');
+Route::get('/alluser', 'UserController@index');
+Route::get('/pizzadetail/{pizza_id}', 'PizzaController@show')->name('pizza_detail');

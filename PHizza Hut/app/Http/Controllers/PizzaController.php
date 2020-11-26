@@ -16,7 +16,7 @@ class PizzaController extends Controller
     {
         $pizzas = Pizza::all();
 
-        return view('welcome', ['pizzas' => $pizzas]);
+        return view('home', ['pizzas' => $pizzas]);
     }
 
     /**
@@ -48,7 +48,9 @@ class PizzaController extends Controller
      */
     public function show($id)
     {
-        //
+        $pizza = Pizza::get()->where('pizza_id', '=', $id);
+
+        return view('pizza_detail', ['pizza' => $pizza]);
     }
 
     /**
