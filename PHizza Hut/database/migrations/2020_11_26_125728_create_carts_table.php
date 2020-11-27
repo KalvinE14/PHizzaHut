@@ -20,7 +20,6 @@ class CreateCartsTable extends Migration
             $table->foreign('pizza_id')->references('pizza_id')->on('pizzas')->onDelete('cascade');
             $table->foreignId('pizza_id');
             $table->integer('quantity');
-            $table->string('status');
         });
     }
 

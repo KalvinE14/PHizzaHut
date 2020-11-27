@@ -25,4 +25,8 @@ Route::get('/pizzadetail/{pizza_id}', 'PizzaController@show')->name('pizza_detai
 Route::post('/createpizza', 'PizzaController@store')->name('create_pizza');
 Route::get('/createpizza', 'PizzaController@create')->name('create_pizza_page');
 
-
+Route::get('/transaction_history/{user_id}', 'TransactionController@viewAllTransactionByUserId');
+Route::get('/transaction_detail/{transaction_id}', 'TransactionController@viewAllDetailTransactionById');
+Route::get('/cart/{user_id}', 'CartController@viewCartByUserId')->name('cart');
+Route::post('/update_quantity/{cart_id}/{user_id}', 'CartController@updateQuantity');
+Route::post('/delete_cart/{cart_id}/{user_id}', 'CartController@deleteCart');
