@@ -85,7 +85,9 @@ class PizzaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $pizza = Pizza::get()->where('pizza_id', '=', $id);
+
+        return view('update_pizza', ['pizza' => $pizza]);
     }
 
     /**
@@ -97,7 +99,27 @@ class PizzaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $pizza = Pizza::get()->where('pizza_id', '=', $id);
+
+        $validator = Validator::make($request->all(), [
+            'pizza_name' => 'required|max:20',
+            'description' => 'required|min:20',
+            'price' => 'required|gt:10000',
+            'image' => 'required|image',
+        ]);
+
+        if($validator->fails()){
+            return view('update_pizza', ['pizza' => $pizza])->withErrors($validator->errors());
+        }
+
+        Pizza::where('pizza_id', '=', $id)->update([
+            'pizza_name' => $request->pizza_name,
+            'description' => $request->description,
+            'price' => $request->price,
+            'image' => $request->file('image')->getClientOriginalName(),
+        ]);
+
+        return redirect()->route('home'); 
     }
 
     /**
