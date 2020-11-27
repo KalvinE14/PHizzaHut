@@ -40,10 +40,11 @@ class UserController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'username' => 'required',
-            'email' => 'required',
-            'password' => 'required',
+            'email' => 'required|unique:users,email|email:rfc,dns',
+            'password' => 'required|min:6',
+            'confirmPw' => 'same:password',
             'address' => 'required',
-            'phone' => 'required',
+            'phone' => 'required|numeric',
             'gender' => 'required',
         ]);
 
@@ -58,6 +59,7 @@ class UserController extends Controller
             'address' => $request->address,
             'phone' => $request->phone,
             'gender' => $request->gender,
+            'role' => 'Member'
         ]);
 
         return redirect()->route('home');
@@ -127,5 +129,10 @@ class UserController extends Controller
     public function showLoginPage()
     {
         return view('login');
+    }
+
+    public function showRegisterPage()
+    {
+        return view('register');
     }
 }
