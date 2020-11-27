@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Pizza;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class PizzaController extends Controller
 {
@@ -26,7 +27,7 @@ class PizzaController extends Controller
      */
     public function create()
     {
-        //
+        return view('create_pizza');
     }
 
     /**
@@ -37,7 +38,30 @@ class PizzaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'pizza_name' => 'required|max:20',
+            'description' => 'required|min:20',
+            'price' => 'required|gt:10000',
+            'image' => 'required|image',
+        ]);
+
+        if($validator->fails()){
+            return view('create_pizza')->withErrors($validator->errors());
+        }
+
+        Pizza::create([
+            'pizza_name' => $request->pizza_name,
+            'description' => $request->description,
+            'price' => $request->price,
+            'image' => $request->file('image')->getClientOriginalName(),
+        ]);
+
+        $image = $request->file('image');
+        $imageName = $request->file('image')->getClientOriginalName();
+
+        $image->move(public_path('assets'), $imageName);
+
+        return redirect()->route('home');
     }
 
     /**

@@ -130,9 +130,4 @@ class UserController extends Controller
     {
         return view('login');
     }
-
-    public function showRegisterPage()
-    {
-        return view('register');
-    }
 }
