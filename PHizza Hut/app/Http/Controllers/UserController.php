@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -26,7 +27,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('register');
     }
 
     /**
@@ -37,7 +38,29 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'username' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            'address' => 'required',
+            'phone' => 'required',
+            'gender' => 'required',
+        ]);
+
+        if($validator->fails()){
+            return view('register')->withErrors($validator->errors());
+        }
+
+        User::create([
+            'username' => $request->username,
+            'email' => $request->email,
+            'password' => $request->password,
+            'address' => $request->address,
+            'phone' => $request->phone,
+            'gender' => $request->gender,
+        ]);
+
+        return redirect()->route('home');
     }
 
     /**
@@ -83,5 +106,26 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function doLogin(Request $request)
+    {
+        $email = $request->get('email');
+        $password = $request->get('password');
+
+        $user = User::where('email', 'LIKE', $email)->where('password', 'LIKE', $password)->get();
+
+        if(count($user) == 1)
+        {
+            return redirect()->route('home');
+        }else
+        {
+            return redirect()->route('login_page');
+        }
+    }
+
+    public function showLoginPage()
+    {
+        return view('login');
     }
 }
