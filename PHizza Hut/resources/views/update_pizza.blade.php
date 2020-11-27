@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paper</title>
+    <title>Update Pizza</title>
 </head>
 <body>
 <table border="1" cellpadding="10" cellspacing="0">

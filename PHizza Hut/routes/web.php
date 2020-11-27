@@ -26,6 +26,8 @@ Route::post('/createpizza', 'PizzaController@store')->name('create_pizza');
 Route::get('/createpizza', 'PizzaController@create')->name('create_pizza_page');
 Route::post('/updatepizza/{pizza_id}', 'PizzaController@update')->name('update_pizza');
 Route::get('/updatepizza/{pizza_id}', 'PizzaController@edit')->name('update_pizza_page');
+Route::post('/deletepizza/{pizza_id}', 'PizzaController@destroy')->name('delete_pizza');
+Route::get('/deletepizza/{pizza_id}', 'PizzaController@delete')->name('delete_pizza_page');
 
 Route::get('/transaction_history/{user_id}', 'TransactionController@viewAllTransactionByUserId');
 Route::get('/transaction_detail/{transaction_id}', 'TransactionController@viewAllDetailTransactionById');

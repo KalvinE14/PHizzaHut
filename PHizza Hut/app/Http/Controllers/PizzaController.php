@@ -87,6 +87,11 @@ class PizzaController extends Controller
     {
         $pizza = Pizza::get()->where('pizza_id', '=', $id);
 
+        if(count($pizza) == 0)
+        {
+            return redirect()->route('home');
+        }
+        
         return view('update_pizza', ['pizza' => $pizza]);
     }
 
@@ -129,7 +134,23 @@ class PizzaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
+    {        
+        $pizza = Pizza::get()->where('pizza_id', '=', $id);
+
+        Pizza::where('pizza_id', 'LIKE', $id)->delete();
+
+        return redirect()->route('home'); 
+    }
+
+    public function delete($id)
     {
-        //
+        $pizza = Pizza::get()->where('pizza_id', '=', $id);
+
+        if(count($pizza) == 0)
+        {
+            return redirect()->route('home');
+        }
+
+        return view('delete_pizza', ['pizza' => $pizza]);
     }
 }
