@@ -32,3 +32,4 @@ Route::get('/transaction_detail/{transaction_id}', 'TransactionController@viewAl
 Route::get('/cart/{user_id}', 'CartController@viewCartByUserId')->name('cart');
 Route::post('/update_quantity/{cart_id}/{user_id}', 'CartController@updateQuantity');
 Route::post('/delete_cart/{cart_id}/{user_id}', 'CartController@deleteCart');
+Route::post('/checkout/{user_id}', 'CartController@checkout');
