@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Pizza;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
 class PizzaController extends Controller
@@ -27,7 +29,23 @@ class PizzaController extends Controller
      */
     public function create()
     {
-        return view('create_pizza');
+        if(Session::get('username'))
+        {
+            $username = Session::get('username');
+            $validateUser = User::where('username', 'LIKE', $username)->get();
+            foreach($validateUser as $valUser)
+            {
+                if(strcmp($valUser->role, "Admin") == 0)
+                {
+                    return view('create_pizza');
+                }else
+                {
+                    return redirect()->route('home');
+                }
+            }
+        }
+
+        return redirect()->route('home');
     }
 
     /**
@@ -87,12 +105,27 @@ class PizzaController extends Controller
     {
         $pizza = Pizza::get()->where('pizza_id', '=', $id);
 
-        if(count($pizza) == 0)
+        if(Session::get('username'))
         {
-            return redirect()->route('home');
+            $username = Session::get('username');
+            $validateUser = User::where('username', 'LIKE', $username)->get();
+            foreach($validateUser as $valUser)
+            {
+                if(strcmp($valUser->role, "Admin") == 0)
+                {
+                    if(count($pizza) == 0)
+                    {
+                        print('There is no pizza with that id');
+                    }
+                    return view('update_pizza', ['pizza' => $pizza]);
+                }else
+                {
+                    return redirect()->route('home');
+                }
+            }
         }
         
-        return view('update_pizza', ['pizza' => $pizza]);
+        return redirect()->route('home');
     }
 
     /**
@@ -146,11 +179,26 @@ class PizzaController extends Controller
     {
         $pizza = Pizza::get()->where('pizza_id', '=', $id);
 
-        if(count($pizza) == 0)
+        if(Session::get('username'))
         {
-            return redirect()->route('home');
+            $username = Session::get('username');
+            $validateUser = User::where('username', 'LIKE', $username)->get();
+            foreach($validateUser as $valUser)
+            {
+                if(strcmp($valUser->role, "Admin") == 0)
+                {
+                    if(count($pizza) == 0)
+                    {
+                        print('There is no pizza with that id');
+                    }
+                    return view('delete_pizza', ['pizza' => $pizza]);
+                }else
+                {
+                    return redirect()->route('home');
+                }
+            }
         }
 
-        return view('delete_pizza', ['pizza' => $pizza]);
+        return redirect()->route('home');
     }
 }

@@ -19,7 +19,23 @@ class UserController extends Controller
     {
         $users = User::all();
 
-        return view('all_user', ['users' => $users]);
+        if(Session::get('username'))
+        {
+            $username = Session::get('username');
+            $validateUser = User::where('username', 'LIKE', $username)->get();
+            foreach($validateUser as $valUser)
+            {
+                if(strcmp($valUser->role, "Admin") == 0)
+                {
+                    return view('all_user', ['users' => $users]);
+                }else
+                {
+                    return redirect()->route('home');
+                }
+            }
+        }
+
+        return redirect()->route('home');
     }
 
     /**
@@ -118,8 +134,6 @@ class UserController extends Controller
         $password = $request->get('password');
 
         $user = User::where('email', 'LIKE', $email)->where('password', 'LIKE', $password)->get();
-
-        // print($user->username);
 
         if(count($user) == 1)
         {
