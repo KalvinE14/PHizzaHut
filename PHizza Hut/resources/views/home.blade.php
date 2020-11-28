@@ -7,7 +7,7 @@
 </head>
 <body>
 <table border="1" cellpadding="10" cellspacing="0">
-
+    <a href="{{ route('logout') }}"><button>Logout</button></a>
         <tr>
             <th>Pizza ID</th>
             <th>Pizza Name</th>
@@ -29,5 +29,10 @@
         </a>
         @endforeach
     </table>
+
+    @if(Session::get('username'))
+        {{ Session::get('username') }}
+    @endif
+    
 </body>
 </html>

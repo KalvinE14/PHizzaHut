@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -117,8 +119,20 @@ class UserController extends Controller
 
         $user = User::where('email', 'LIKE', $email)->where('password', 'LIKE', $password)->get();
 
+        // print($user->username);
+
         if(count($user) == 1)
         {
+            if($request->has('remember'))
+            {
+                Cookie::queue('email', $email, 120);
+                Cookie::queue('password', $password, 120);
+                
+                foreach($user as $u)
+                {
+                    Session::put('username', $u->username);
+                }
+            }
             return redirect()->route('home');
         }else
         {
@@ -128,6 +142,20 @@ class UserController extends Controller
 
     public function showLoginPage()
     {
+        if(Cookie::get('email') && Cookie::get('password'))
+        {
+            return redirect()->route('home');
+        }
+
         return view('login');
+    }
+
+    public function logout()
+    {
+        $cookieEmail = Cookie::forget('email');
+        $cookiePassword = Cookie::forget('password');
+        Session::forget('username');
+
+        return redirect()->route('home')->withCookies([$cookieEmail, $cookiePassword]);
     }
 }
