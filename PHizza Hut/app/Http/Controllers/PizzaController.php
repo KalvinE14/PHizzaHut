@@ -194,4 +194,11 @@ class PizzaController extends Controller
 
         return redirect()->route('home');
     }
+
+    public function search(Request $request)
+    {
+        $pizzas = Pizza::where('pizza_name', 'LIKE', '%' . $request->search . '%')->paginate(6);
+
+        return view('home', ['pizzas'=> $pizzas]);
+    }
 }

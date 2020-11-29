@@ -3,21 +3,26 @@
 @section('title', 'Home')
 
 @section('content')
-
     <div class="row">
         @if (Session::get('username') && Session::get('role') == 'Admin')
-            <div class="col-lg3 ml-4" style="padding-left: 85px;padding-right: 85px;">
-                <a href="{{ route('create_pizza_page') }}">
-                    <button>Add Pizza</button>
-                </a>
-            </div>
-
-            <div class="col-lg3 ml-auto mr-4" style="padding-left: 85px;padding-right: 85px;">
-                {{ $pizzas->links() }}
-            </div>
-            
+        <div class="col-lg3 mr-auto ml-4" style="padding-left: 85px;padding-right: 85px;">
+            <a href="{{ route('create_pizza_page') }}">
+                <button>Add Pizza</button>
+            </a>
+        </div>
+        @else
+        <div class="col-lg3 mr-auto ml-4" style="padding-left: 85px;padding-right: 85px;">
+            <form action="{{ route('search_pizza') }}" method="post">
+                @csrf
+                <input type="text" name="search" id="search" placeholder="search pizza">
+            </form>
+        </div>
         @endif
+        <div class="col-lg3 mr-4" style="padding-left: 85px;padding-right: 85px;">
+            {{ $pizzas->links() }}
+        </div>
     </div>
+        
    
 
     <div class="row" style="margin-left: 0px;margin-right: 0px;">
