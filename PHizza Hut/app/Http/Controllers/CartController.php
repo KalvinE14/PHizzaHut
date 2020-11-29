@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Cart;
 use App\TransactionDetail;
 use App\TransactionHeader;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 use Ramsey\Uuid\Type\Integer;
 use Symfony\Component\Console\Input\Input;
 
@@ -46,5 +48,20 @@ class CartController extends Controller
         }
 
         return redirect()->route('cart', $user_id);
+    }
+
+    public function addCart($pizza_id, Request $request){
+        $this->validate($request, [
+            'quantity' => 'required|min:1|numeric'
+        ]);
+
+        $user = User::where('username', Session::get('username'))->first();
+        $user_id = $user->user_id;
+
+        DB::table('carts')->insert([
+            ['user_id' => $user_id, 'pizza_id' => $pizza_id, 'quantity' => $request->quantity]
+        ]);
+
+        return redirect()->back();
     }
 }

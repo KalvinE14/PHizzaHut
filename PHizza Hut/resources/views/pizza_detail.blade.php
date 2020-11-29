@@ -24,7 +24,18 @@
                 <td> {{$p->price}} </td>
                 <td> {{$p->image}} </td>
             </tr>     
-        </a>
+            
+            <br>
+            <br>
+            @if (Session::get('username') && Session::get('role') == 'Member')
+                <form action="/add_cart/{{$p->pizza_id}}" method="POST">
+                    {{ csrf_field() }}
+
+                    <h5>Quantity</h5> 
+                    <input type="text" name="quantity">
+                    <button type="submit">Add to Cart</button>
+                </form>
+            @endif
         @endforeach
     </table>
 </body>

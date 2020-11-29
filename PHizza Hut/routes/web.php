@@ -36,3 +36,4 @@ Route::get('/cart/{user_id}', 'CartController@viewCartByUserId')->name('cart');
 Route::post('/update_quantity/{cart_id}/{user_id}', 'CartController@updateQuantity');
 Route::post('/delete_cart/{cart_id}/{user_id}', 'CartController@deleteCart');
 Route::post('/checkout/{user_id}', 'CartController@checkout');
+Route::post('/add_cart/{pizza_id}', 'CartController@addCart');

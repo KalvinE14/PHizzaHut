@@ -145,6 +145,7 @@ class UserController extends Controller
                 foreach($user as $u)
                 {
                     Session::put('username', $u->username);
+                    Session::put('role', $u->role);
                 }
             }
             return redirect()->route('home');
