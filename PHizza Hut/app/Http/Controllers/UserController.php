@@ -21,17 +21,14 @@ class UserController extends Controller
 
         if(Session::get('username'))
         {
-            $username = Session::get('username');
-            $validateUser = User::where('username', 'LIKE', $username)->get();
-            foreach($validateUser as $valUser)
+            $role = Session::get('role');
+
+            if(strcmp($role, "Admin") == 0)
             {
-                if(strcmp($valUser->role, "Admin") == 0)
-                {
-                    return view('all_user', ['users' => $users]);
-                }else
-                {
-                    return redirect()->route('home');
-                }
+                return view('all_user', ['users' => $users]);
+            }else
+            {
+                return redirect()->route('home');
             }
         }
 
@@ -146,6 +143,7 @@ class UserController extends Controller
                 {
                     Session::put('username', $u->username);
                     Session::put('role', $u->role);
+                    Session::put('user_id', $u->user_id);
                 }
             }
             return redirect()->route('home');
@@ -171,6 +169,7 @@ class UserController extends Controller
         $cookiePassword = Cookie::forget('password');
         Session::forget('username');
         Session::forget('role');
+        Session::forget('user_id');
 
         return redirect()->route('home')->withCookies([$cookieEmail, $cookiePassword]);
     }

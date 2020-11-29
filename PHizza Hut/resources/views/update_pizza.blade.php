@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update Pizza</title>
-</head>
-<body>
-<table border="1" cellpadding="10" cellspacing="0">
+@extends('template.master')
+
+@section('title', "Update Pizza")
+
+@section('content')
     @foreach($pizza as $p)
         {{$p->image}}
 
@@ -41,5 +37,4 @@
             </div>
         </form>
     @endforeach
-</body>
-</html>
+@endsection

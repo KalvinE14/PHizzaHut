@@ -19,16 +19,6 @@ class PizzaController extends Controller
     {
         $pizzas = Pizza::paginate(6);
 
-        if(Session::get('username'))
-        {
-            $username = Session::get('username');
-            $validateUser = User::where('username', 'LIKE', $username)->get();
-            foreach($validateUser as $valUser)
-            {
-                return view('home', ['pizzas' => $pizzas, 'user_id' => $valUser->user_id]);
-            }
-        }
-
         return view('home', ['pizzas' => $pizzas]);
     }
 
@@ -41,17 +31,14 @@ class PizzaController extends Controller
     {
         if(Session::get('username'))
         {
-            $username = Session::get('username');
-            $validateUser = User::where('username', 'LIKE', $username)->get();
-            foreach($validateUser as $valUser)
+            $role = Session::get('role');
+
+            if(strcmp($role, "Admin") == 0)
             {
-                if(strcmp($valUser->role, "Admin") == 0)
-                {
-                    return view('create_pizza');
-                }else
-                {
-                    return redirect()->route('home');
-                }
+                return view('create_pizza');
+            }else
+            {
+                return redirect()->route('home');
             }
         }
 
@@ -117,21 +104,19 @@ class PizzaController extends Controller
 
         if(Session::get('username'))
         {
-            $username = Session::get('username');
-            $validateUser = User::where('username', 'LIKE', $username)->get();
-            foreach($validateUser as $valUser)
+            $role = Session::get('role');
+
+            if(strcmp($role, "Admin") == 0)
             {
-                if(strcmp($valUser->role, "Admin") == 0)
+                if(count($pizza) == 0)
                 {
-                    if(count($pizza) == 0)
-                    {
-                        print('There is no pizza with that id');
-                    }
-                    return view('update_pizza', ['pizza' => $pizza]);
-                }else
-                {
-                    return redirect()->route('home');
+                    print('There is no pizza with that id');
                 }
+
+                return view('update_pizza', ['pizza' => $pizza]);
+            }else
+            {
+                return redirect()->route('home');
             }
         }
         
@@ -191,21 +176,19 @@ class PizzaController extends Controller
 
         if(Session::get('username'))
         {
-            $username = Session::get('username');
-            $validateUser = User::where('username', 'LIKE', $username)->get();
-            foreach($validateUser as $valUser)
+            $role = Session::get('role');
+
+            if(strcmp($role, "Admin") == 0)
             {
-                if(strcmp($valUser->role, "Admin") == 0)
+                if(count($pizza) == 0)
                 {
-                    if(count($pizza) == 0)
-                    {
-                        print('There is no pizza with that id');
-                    }
-                    return view('delete_pizza', ['pizza' => $pizza]);
-                }else
-                {
-                    return redirect()->route('home');
+                    print('There is no pizza with that id');
                 }
+
+                return view('delete_pizza', ['pizza' => $pizza]);
+            }else
+            {
+                return redirect()->route('home');
             }
         }
 

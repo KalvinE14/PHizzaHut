@@ -1,6 +1,6 @@
 @extends('template.master')
 
-@section('title', 'Pizza's Detail')
+@section('title', "Pizza's Detail")
 
 @section('content')
 <table border="1" cellpadding="10" cellspacing="0">
