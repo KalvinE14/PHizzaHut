@@ -12,8 +12,11 @@
     </head>
     <body>
         @foreach ($transactions as $t)
-            {{$t->transaction_id}}
-            {{$t->user_id}}
+            Transaction ID: {{$t->transaction_id}} <br>
+            User ID: {{$t->user_id}} <br>
+            Created At: {{$t->created_at}} <br>
+            <br>
+            <br>
         @endforeach
     </body>
 </html>

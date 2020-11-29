@@ -20,8 +20,8 @@ class TransactionController extends Controller
     }
 
     public function viewAllTransaction(){
-        $transactions = TransactionHeader::all();
-        return view('all_transaction')->with('transaction', $transactions);
+        $transactions = TransactionHeader::join('users', 'transaction_headers.user_id', '=', 'users.user_id')->get();
+        return view('all_transaction')->with('transactions', $transactions);
     }
 
     public function getPizzaById($pizza_id){
