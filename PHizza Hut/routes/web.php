@@ -19,7 +19,7 @@ Route::post('/login', 'UserController@doLogin')->name('login');
 Route::get('/login', 'UserController@showLoginPage')->name('login_page');
 Route::post('/register', 'UserController@store')->name('register');
 Route::get('/register', 'UserController@create')->name('register_page');
-Route::get('/alluser', 'UserController@index');
+Route::get('/alluser', 'UserController@index')->name('all_user');
 Route::get('/logout', 'UserController@logout')->name('logout');
 
 Route::get('/pizzadetail/{pizza_id}', 'PizzaController@show')->name('pizza_detail');

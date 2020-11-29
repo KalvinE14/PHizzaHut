@@ -1,42 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paper</title>
-</head>
-<body>
-<table border="1" cellpadding="10" cellspacing="0">
+@extends('template.master')
 
-        <!-- @if (session('status'))
-            <div>
-                {{ session('status') }}
-            </div>
-        @endif -->
+@section('title', 'View All User')
 
-        <tr>
-            <th>User ID</th>
-            <th>Username</th>
-            <th>Email</th>
-            <th>Password</th>
-            <th>Address</th>
-            <th>Phone</th>
-            <th>Gender</th>
-            <th>Role</th>
-        </tr>
-
+@section('content')
+    
+    <div class="row" style="margin-left: 0px;margin-right: 0px;">
         @foreach($users as $user)
-            <tr>
-                <td> {{$user->user_id}} </td>
-                <td> {{$user->username}} </td>
-                <td> {{$user->email}} </td>
-                <td> {{$user->password}} </td>
-                <td> {{$user->address}} </td>
-                <td> {{$user->phone}} </td>
-                <td> {{$user->gender}} </td>
-                <td> {{$user->role}} </td>
-            </tr>
+            <div class="col-lg3" style="margin-left: 95px;margin-right: 95px;border: solid;margin-top: 10px;margin-bottom: 10px;">
+                <p>User ID : {{ $user->user_id }}</p>
+                <p>Username : {{ $user->username }}</p>
+                <p>Email : {{ $user->email }}</p>
+                <p>Address : {{ $user->address }}</p>
+                <p>Phone Number : {{ $user->phone }}</p>
+                <p>Gender : {{ $user->gender }}</p>
+            </div>
         @endforeach
-    </table>
-</body>
-</html>
+    </div>
+@endsection

@@ -11,7 +11,7 @@
         <div id="header" style="background-color: red;">
             <div class="row">
                 <a href="{{ route('home') }}" style="text-decoration: none;color:white">
-                    <div class="row ml-4">
+                    <div class="row ml-4" style="padding-left: 85px;padding-right: 85px;">
                         <div class="col-xs-6">
                             <img id="logo" src="{{ url('assets/logo.png') }}" alt="" width="100px" height="100px">
                         </div>
@@ -21,21 +21,39 @@
                     </div>
                 </a>
 
-                <div class="row ml-auto mr-4">
-                    @if(Session::get('username'))
+                <div class="row ml-auto mr-4" style="padding-left: 85px;padding-right: 85px;">
+                    @if(Session::get('username') && strcmp(Session::get('role'), "Member") == 0)
                         <div class="col-xs-6">
                             <a href="{{ route('transaction_history', Session::get('user_id')) }}">View Transaction History</a>
+                            |
                         </div>
                         <div class="col-xs-6">
                             <a href="{{ route('cart', Session::get('user_id')) }}">View Cart</a>
                         </div>
-                        {{ Session::get('username') }}
+                            |
+                            {{ Session::get('username') }}
+                            |
+                        <div class="col-xs-6">
+                            <a href="{{ route('logout') }}"><button>Logout</button></a>
+                        </div>
+                    @elseif(Session::get('username') && strcmp(Session::get('role'), "Admin") == 0)
+                        <div class="col-xs-6">
+                            <a href="{{ route('all_transaction') }}">View All User Transaction</a>
+                            |
+                        </div>
+                        <div class="col-xs-6">
+                            <a href="{{ route('all_user') }}">View All User</a>
+                        </div>
+                            |
+                            {{ Session::get('username') }}
+                            |
                         <div class="col-xs-6">
                             <a href="{{ route('logout') }}"><button>Logout</button></a>
                         </div>
                     @else
                         <div class="col-xs-6">
                             <a href="{{ route('login_page') }}"><button>Login</button></a>
+                            |
                         </div>
                         <div class="col-xs-6">
                             <a href="{{ route('register_page') }}"><button>Register</button></a>
