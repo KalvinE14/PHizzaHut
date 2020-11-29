@@ -30,7 +30,7 @@ Route::get('/updatepizza/{pizza_id}', 'PizzaController@edit')->name('update_pizz
 Route::post('/deletepizza/{pizza_id}', 'PizzaController@destroy')->name('delete_pizza');
 Route::get('/deletepizza/{pizza_id}', 'PizzaController@delete')->name('delete_pizza_page');
 
-Route::get('/transaction_history/{user_id}', 'TransactionController@viewAllTransactionByUserId');
+Route::get('/transaction_history/{user_id}', 'TransactionController@viewAllTransactionByUserId')->name('transaction_history');
 Route::get('/transaction_detail/{transaction_id}', 'TransactionController@viewAllDetailTransactionById');
 Route::get('/cart/{user_id}', 'CartController@viewCartByUserId')->name('cart');
 Route::post('/update_quantity/{cart_id}/{user_id}', 'CartController@updateQuantity');

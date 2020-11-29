@@ -170,6 +170,7 @@ class UserController extends Controller
         $cookieEmail = Cookie::forget('email');
         $cookiePassword = Cookie::forget('password');
         Session::forget('username');
+        Session::forget('role');
 
         return redirect()->route('home')->withCookies([$cookieEmail, $cookiePassword]);
     }

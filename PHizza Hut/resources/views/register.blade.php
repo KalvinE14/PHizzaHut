@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
-</head>
-<body>
+@extends('template.master')
+
+@section('title', 'Register')
+
+@section('content')
     <form method="POST" action= "{{ route('register') }}">
         @csrf
         <div>
@@ -57,5 +54,4 @@
             <button type="submit">Register</button>
         </div>
     </form>
-</body>
-</html>
+@endsection

@@ -19,6 +19,16 @@ class PizzaController extends Controller
     {
         $pizzas = Pizza::paginate(6);
 
+        if(Session::get('username'))
+        {
+            $username = Session::get('username');
+            $validateUser = User::where('username', 'LIKE', $username)->get();
+            foreach($validateUser as $valUser)
+            {
+                return view('home', ['pizzas' => $pizzas, 'user_id' => $valUser->user_id]);
+            }
+        }
+
         return view('home', ['pizzas' => $pizzas]);
     }
 
