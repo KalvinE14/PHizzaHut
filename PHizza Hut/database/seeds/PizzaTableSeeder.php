@@ -25,7 +25,12 @@ class PizzaTableSeeder extends Seeder
             ['pizza_id' => 10, 'pizza_name' => 'Veggie Garden', 'description' => 'Corn, Mushrooms, Mozarella Cheese, Red Peppers, Green Peppers, Onions.', 'price' => 110000, 'image' => 'veggie_garden.jpg'],
             ['pizza_id' => 11, 'pizza_name' => 'Super Supreme Chicken', 'description' => 'Smoked chicken, chicken sausage, onions, mushrooms, red and green peppers.', 'price' => 97500, 'image' => 'super_supreme_chicken.jpg'],
             ['pizza_id' => 12, 'pizza_name' => 'Meat Lovers', 'description' => 'Beef sausage slices, minced beef, beef burger, chicken sausage.', 'price' => 92500, 'image' => 'meat_lovers.jpg'],
-            
+            ['pizza_id' => 13, 'pizza_name' => 'Frankfurter Bbq Chicken', 'description' => 'Frankfurter Chicken, minced chicken, mozzarella cheese, BBQ honey sauce and mustard sauce.', 'price' => 95000, 'image' => 'frankfurter_bbq_chicken.jpg'],
+            ['pizza_id' => 14, 'pizza_name' => 'Frankfurter Bbq Chicken', 'description' => 'Frankfurter Chicken, minced chicken, mozzarella cheese, BBQ honey sauce and mustard sauce.', 'price' => 95000, 'image' => 'frankfurter_bbq_chicken.jpg'],
+            ['pizza_id' => 15, 'pizza_name' => 'Frankfurter Bbq Chicken', 'description' => 'Frankfurter Chicken, minced chicken, mozzarella cheese, BBQ honey sauce and mustard sauce.', 'price' => 95000, 'image' => 'frankfurter_bbq_chicken.jpg'],
+            ['pizza_id' => 16, 'pizza_name' => 'Frankfurter Bbq Chicken', 'description' => 'Frankfurter Chicken, minced chicken, mozzarella cheese, BBQ honey sauce and mustard sauce.', 'price' => 95000, 'image' => 'frankfurter_bbq_chicken.jpg'],
+            ['pizza_id' => 17, 'pizza_name' => 'Frankfurter Bbq Chicken', 'description' => 'Frankfurter Chicken, minced chicken, mozzarella cheese, BBQ honey sauce and mustard sauce.', 'price' => 95000, 'image' => 'frankfurter_bbq_chicken.jpg'],
+            ['pizza_id' => 18, 'pizza_name' => 'Frankfurter Bbq Chicken', 'description' => 'Frankfurter Chicken, minced chicken, mozzarella cheese, BBQ honey sauce and mustard sauce.', 'price' => 95000, 'image' => 'frankfurter_bbq_chicken.jpg'],
         ]);
     }
 }

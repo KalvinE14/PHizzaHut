@@ -204,6 +204,7 @@ class PizzaController extends Controller
 
         $pizzas = Pizza::where('pizza_name', 'LIKE', '%' . $request->search . '%')->paginate(6);
 
+        $pizzas->appends(['search' => $request->search]);
         
         dump($pizzas);
 

@@ -11,7 +11,7 @@
             </a>
         </div>
         @else
-        <div class="col-lg3 mr-auto ml-4"">
+        <div class="col-lg3 mr-auto ml-4">
             <form action="{{ route('search_pizza') }}" method="post">
                 @csrf
                 <input style="margin-top: 20px; margin-left: 25px;" type="text" name="search" id="search" placeholder="search pizza">

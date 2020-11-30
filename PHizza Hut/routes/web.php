@@ -29,7 +29,7 @@ Route::post('/updatepizza/{pizza_id}', 'PizzaController@update')->name('update_p
 Route::get('/updatepizza/{pizza_id}', 'PizzaController@edit')->name('update_pizza_page');
 Route::post('/deletepizza/{pizza_id}', 'PizzaController@destroy')->name('delete_pizza');
 Route::get('/deletepizza/{pizza_id}', 'PizzaController@delete')->name('delete_pizza_page');
-Route::post('/searchpizza', 'PizzaController@search')->name('search_pizza');
+Route::any('/searchpizza', 'PizzaController@search')->name('search_pizza');
 
 Route::get('/transaction_history/{user_id}', 'TransactionController@viewAllTransactionByUserId')->name('transaction_history');
 Route::get('/transaction_detail/{transaction_id}', 'TransactionController@viewAllDetailTransactionById');
