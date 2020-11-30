@@ -7,9 +7,9 @@
     <title>@yield('title')</title>
 </head>
 <body>
-    <div class="container-fluid">
-        <div id="header" style="background-color: red;">
-            <div class="row">
+    <div class="container-fluid" style="height: 100%;">
+        <div id="header">
+            <div class="row" style="background-color: red;">
                 <a href="{{ route('home') }}" style="text-decoration: none;color:white">
                     <div class="row ml-4" style="padding-left: 85px;padding-right: 85px;">
                         <div class="col-xs-6">
@@ -63,8 +63,11 @@
             </div>
         </div>
         
-        <div id="body">
-            @yield('content')
+        <div id="body" style="padding-left: 100px;padding-right: 100px;background-color: #f2ede9;padding-top: 30px;padding-bottom: 30px;">
+            <div class="container" style="background-color: #fffdfb;">
+                @yield('content')
+            </div>
+            
         </div>
     </div>
 
