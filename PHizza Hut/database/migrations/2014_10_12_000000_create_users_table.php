@@ -22,7 +22,6 @@ class CreateUsersTable extends Migration
             $table->string('phone');
             $table->string('gender');
             $table->string('role');
-            $table->rememberToken();
         });
     }
 

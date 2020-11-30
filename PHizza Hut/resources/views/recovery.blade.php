@@ -3,17 +3,17 @@
 @section('title', 'Login')
 
 @section('content')
-    <div id="login_name" style="margin-bottom: 50px;">
+    <div id="recovery_name" style="margin-bottom: 50px;">
         <div class="row justify-content-center" style="background-color: red;color: white;">
-            <h1>Login</h1>
+            <h1>Recovery Account</h1>
         </div>
     </div>
     
     <div id="form_login" style="margin-bottom: 50px;padding-bottom: 30px;">
-        <form method="POST" action= "{{ route('login') }}">
+        <form method="POST" action= "{{ route('recovery_account') }}">
             @csrf
             <div class="row justify-content-center" style="margin-bottom: 20px;">
-                <div class="col-lg3" style="margin-right: 40px;margin-left: 17px;width: 50px;">
+                <div class="col-lg3" style="margin-right: 40px;margin-left: 17px;width: 103px;">
                     <label for="email">Email</label>
                 </div>
 
@@ -27,8 +27,8 @@
             </div>
 
             <div class="row justify-content-center" style="margin-bottom: 20px;">
-                <div class="col-lg3" style="margin-right: 40px;margin-left: 17px;width: 50px;">
-                    <label for="pw">Password</label>
+                <div class="col-lg3" style="margin-right: 40px;margin-left: 17px;width: 103px;">
+                    <label for="pw">New Password</label>
                 </div>
 
                 <div class="col-lg3" style="margin-left: 17px; margin-right: 10px;">
@@ -36,26 +36,12 @@
                 </div>
 
                 <div class="col-lg3">
-                    <input type="password" name="password" id="pw" placeholder="password">
+                    <input type="password" name="new_password" id="new_password" placeholder="new password">
                 </div>
             </div>
 
             <div class="row justify-content-center" style="margin-bottom: 20px;">
-                <div class="col-lg3" style="margin-right: 10px;margin-left: 17px;">
-                    <input type="checkbox" name="remember" id="remember">
-                </div>
-
-                <div class="col-lg3">
-                   <label for="remember">Remember Me!</label>
-                </div>
-            </div>
-
-            <div class="row justify-content-center" style="margin-bottom: 20px;">
-                <button type="submit">Login</button>
-            </div>
-
-            <div class="row justify-content-center">
-                <a href="{{ route('recovery_page') }}">Forgot your password?</a>
+                <button type="submit">Recover</button>
             </div>
 
             @if($errors->any())

@@ -21,6 +21,8 @@ Route::post('/register', 'UserController@store')->name('register');
 Route::get('/register', 'UserController@create')->name('register_page');
 Route::get('/alluser', 'UserController@index')->name('all_user');
 Route::get('/logout', 'UserController@logout')->name('logout');
+Route::get('/recovery', 'UserController@showRecoveryPage')->name('recovery_page');
+Route::post('/recovery', 'UserController@recoveryAccount')->name('recovery_account');
 
 Route::get('/pizzadetail/{pizza_id}', 'PizzaController@show')->name('pizza_detail');
 Route::post('/createpizza', 'PizzaController@store')->name('create_pizza');

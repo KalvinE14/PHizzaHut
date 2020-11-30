@@ -143,17 +143,16 @@ class UserController extends Controller
 
         if(count($user) == 1)
         {
+            foreach($user as $u)
+            {
+                Session::put('username', $u->username);
+                Session::put('role', $u->role);
+                Session::put('user_id', $u->user_id);
+            }
             if($request->has('remember'))
             {
                 Cookie::queue('email', $email, 120);
                 Cookie::queue('password', $password, 120);
-                
-                foreach($user as $u)
-                {
-                    Session::put('username', $u->username);
-                    Session::put('role', $u->role);
-                    Session::put('user_id', $u->user_id);
-                }
             }
             return redirect()->route('home');
         }else
@@ -181,5 +180,44 @@ class UserController extends Controller
         Session::forget('user_id');
 
         return redirect()->route('home')->withCookies([$cookieEmail, $cookiePassword]);
+    }
+
+    public function showRecoveryPage()
+    {
+        if(Cookie::get('email') && Cookie::get('password'))
+        {
+            return redirect()->route('home');
+        }
+
+        return view('recovery');
+    }
+
+    public function recoveryAccount(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required',
+            'new_password' => 'required|min:6',
+        ]);
+
+        if($validator->fails()){
+            return view('recovery')->withErrors($validator->errors());
+        }
+
+        $email = $request->get('email');
+        $new_password = $request->get('new_password');
+
+        $user = User::where('email', 'LIKE', $email)->get();
+
+        if(count($user) == 1)
+        {
+            User::where('email', '=', $email)->update([
+                'password' => $new_password
+            ]);
+
+            return redirect()->route('login_page');
+        }else
+        {
+            return redirect()->route('recovery_page')->withErrors(['warning' => 'Incorrect email, please input your email correctly']);
+        }
     }
 }
