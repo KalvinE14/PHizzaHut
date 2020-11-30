@@ -206,8 +206,6 @@ class PizzaController extends Controller
 
         $pizzas->appends(['search' => $request->search]);
         
-        dump($pizzas);
-
         return view('home', ['pizzas'=> $pizzas]);
     }
 }
