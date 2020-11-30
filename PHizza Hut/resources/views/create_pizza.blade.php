@@ -4,44 +4,78 @@
 
 @section('content')
 
-    <div id="create_pizza" style="padding-left: 50px;">
-        <div id="title">
-            <h1>
-                Add New Pizza
-            </h1>
+    <div id="create_pizza" style="margin-bottom: 50px;">
+        <div class="row justify-content-center" style="background-color: red;color: white;">
+            <h1>Add New Pizza</h1>
         </div>
-
-        <div class="form">
-            <form method="POST" action= "{{ route('create_pizza') }}" enctype="multipart/form-data">
-                @csrf
-                <div>
+    </div>
+    
+    <div id="form_create_pizza" style="margin-bottom: 50px;padding-bottom: 30px;">
+        <form method="POST" action= "{{ route('create_pizza') }}" enctype="multipart/form-data">
+            @csrf
+            <div class="row justify-content-center" style="margin-bottom: 20px;">
+                <div class="col-lg3" style="margin-right: 10px;margin-left: 17px;width: 100px;">
                     <label for="pizza_name">Pizza Name</label>
-                    <br>
-                    <input type="text" name="pizza_name" id="pizza_name">
                 </div>
 
-                <div>
+                <div class="col-lg3" style="margin-left: 17px; margin-right: 10px;">
+                    <p> : </p>
+                </div>
+
+                <div class="col-lg3">
+                    <input type="text" name="pizza_name" id="pizza_name" placeholder="pizza name">
+                </div>
+            </div>
+
+            <div class="row justify-content-center" style="margin-bottom: 20px;">
+                <div class="col-lg3" style="margin-right: 10px;margin-left: 17px;width: 100px;">
                     <label for="price">Pizza Price</label>
-                    <br>
-                    <input type="number" name="price" id="price">
                 </div>
-                
-                <div>
+
+                <div class="col-lg3" style="margin-left: 17px; margin-right: 10px;">
+                    <p> : </p>
+                </div>
+
+                <div class="col-lg3">
+                    <input type="number" name="price" id="price" placeholder="pizza price">
+                </div>
+            </div>
+
+            <div class="row justify-content-center" style="margin-bottom: 20px">
+                <div class="col-lg3" style="margin-right: 10px;margin-left: 17px;width: 100px;">
                     <label for="description">Description</label>
-                    <br>
-                    <input type="text" name="description" id="description">
                 </div>
 
-                <div>
+                <div class="col-lg3" style="margin-left: 17px; margin-right: 10px;">
+                    <p> : </p>
+                </div>
+
+                <div class="col-lg3">
+                    <input type="text" name="description" id="description" placeholder="description">
+                </div>
+            </div>
+
+            <div class="row justify-content-center" style="margin-bottom: 20px;">
+                <div class="col-lg3" style="margin-right: 10px;margin-left: 17px;width: 100px;">
                     <label for="image">Pizza Image</label>
-                    <br>
-                    <input type="file" name="image" id="image">
                 </div>
 
-                <div>
-                    <button type="submit">Add Pizza</button>
+                <div class="col-lg3" style="margin-left: 17px; margin-right: 10px;">
+                    <p> : </p>
                 </div>
-            </form>
-        </div>
+
+                <div class="col-lg3">
+                    <input style="width: 185px;" type="file" name="image" id="image">
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <button type="submit">Add Pizza</button>
+            </div>
+
+            @if($errors->any())
+                <p style="color:red; text-align: center;margin-top: 20px;">{{$errors->first()}}</p>
+            @endif
+        </form>
     </div>
 @endsection

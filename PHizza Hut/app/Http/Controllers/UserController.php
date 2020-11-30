@@ -127,6 +127,15 @@ class UserController extends Controller
 
     public function doLogin(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+
+        if($validator->fails()){
+            return view('login')->withErrors($validator->errors());
+        }
+
         $email = $request->get('email');
         $password = $request->get('password');
 
@@ -149,7 +158,7 @@ class UserController extends Controller
             return redirect()->route('home');
         }else
         {
-            return redirect()->route('login_page');
+            return redirect()->route('login_page')->withErrors(['warning' => 'Incorect email and/or password']);
         }
     }
 
