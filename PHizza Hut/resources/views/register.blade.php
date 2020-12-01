@@ -13,7 +13,7 @@
         <form method="POST" action= "{{ route('register') }}">
             @csrf
             <div class="row justify-content-center" style="margin-bottom: 20px;">
-                <div class="col-lg3" style="margin-right: 40px;margin-left: 17px;width: 50px;">
+                <div class="col-lg3" style="margin-right: 40px;margin-left: 17px;width: 130px;">
                     <label for="username">Username</label>
                 </div>
 
@@ -30,7 +30,7 @@
             
 
             <div class="row justify-content-center" style="margin-bottom: 20px;">
-                <div class="col-lg3" style="margin-right: 40px;margin-left: 17px;width: 50px;">
+                <div class="col-lg3" style="margin-right: 40px;margin-left: 17px;width: 130px;">
                     <label for="email">Email Address</label>
                 </div>
 
@@ -44,7 +44,7 @@
             </div>
 
             <div class="row justify-content-center" style="margin-bottom: 20px;">
-                <div class="col-lg3" style="margin-right: 40px;margin-left: 17px;width: 50px;">
+                <div class="col-lg3" style="margin-right: 40px;margin-left: 17px;width: 130px;">
                     <label for="password">Password</label>
                 </div>
 
@@ -58,7 +58,7 @@
             </div>
 
             <div class="row justify-content-center" style="margin-bottom: 20px;">
-                <div class="col-lg3" style="margin-right: 40px;margin-left: 17px;width: 50px;">
+                <div class="col-lg3" style="margin-right: 40px;margin-left: 17px;width: 130px;">
                     <label for="confirmPw">Confirm Password</label>
                 </div>
 
@@ -72,7 +72,7 @@
             </div>
 
             <div class="row justify-content-center" style="margin-bottom: 20px;">
-                <div class="col-lg3" style="margin-right: 40px;margin-left: 17px;width: 50px;">
+                <div class="col-lg3" style="margin-right: 40px;margin-left: 17px;width: 130px;">
                     <label for="address">Address</label>
                 </div>
 
@@ -86,7 +86,7 @@
             </div>
 
             <div class="row justify-content-center" style="margin-bottom: 20px;">
-                <div class="col-lg3" style="margin-right: 40px;margin-left: 17px;width: 50px;">
+                <div class="col-lg3" style="margin-right: 40px;margin-left: 17px;width: 130px;">
                     <label for="phone">Phone Number</label>
                 </div>
 
@@ -100,7 +100,7 @@
             </div>
 
             <div class="row justify-content-center" style="margin-bottom: 20px;">
-                <div class="col-lg3" style="margin-right: 40px;margin-left: 17px;width: 50px;">
+                <div class="col-lg3" style="margin-right: 40px;margin-left: 17px;width: 130px;">
                     <label for="gender">Gender</label>
                 </div>
 
