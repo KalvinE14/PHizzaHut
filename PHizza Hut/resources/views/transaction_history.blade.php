@@ -1,22 +1,30 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('template.master')
 
-        <title></title>
+@section('title', 'Transaction History')
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+@section('content')
+        @php
+        $counter = 0;
+        @endphp
 
-    </head>
-    <body>
         @foreach ($transactions as $t)
-            Transaction ID: {{$t->transaction_id}} <br>
-            User ID: {{$t->user_id}} <br>
-            Created At: {{$t->created_at}} <br>
-            <br>
-            <br>
+            @if ($counter % 2 == 0)
+                <a href="{{ route('transaction_detail', $t->transaction_id)}}" style="text-decoration: none">
+                    <div class="container pt-3 pb-3 rounded danger" style="background-color: red; color: white">
+                        Transaction at {{$t->created_at}}
+                    </div> 
+                </a>
+            @else
+                <a href="{{ route('transaction_detail', $t->transaction_id)}}" style="text-decoration: none">
+                    <div class="container pt-3 pb-3" style="background-color: white; color: black">
+                        Transaction at {{$t->created_at}}
+                    </div> 
+                </a>
+            @endif
+
+            @php
+                $counter++;  
+            @endphp
+            
         @endforeach
-    </body>
-</html>
+@endsection

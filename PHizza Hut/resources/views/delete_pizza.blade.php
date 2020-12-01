@@ -16,7 +16,7 @@
                 <form method="POST" action= "{{ route('delete_pizza', $p->pizza_id) }}" enctype="multipart/form-data">
                     @csrf
                     <div>
-                        <button type="submit">Delete Pizza</button>
+                        <button class="btn btn-danger" type="submit">Delete Pizza</button>
                     </div>
                 </form>
             </div>

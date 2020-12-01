@@ -23,7 +23,7 @@
                 </div>
 
                 <div class="col-lg3">
-                    <input type="text" name="pizza_name" id="pizza_name" placeholder="pizza name">
+                    <input type="text" name="pizza_name" id="pizza_name" placeholder="Pizza Name" style="padding-top: 5px; padding-bottom: 5px; padding-left:5px; padding-right: 5px">
                 </div>
             </div>
 
@@ -37,7 +37,7 @@
                 </div>
 
                 <div class="col-lg3">
-                    <input type="number" name="price" id="price" placeholder="pizza price">
+                    <input type="number" name="price" id="price" placeholder="Pizza Price" style="padding-top: 5px; padding-bottom: 5px; padding-left:5px; padding-right: 5px">
                 </div>
             </div>
 
@@ -51,7 +51,7 @@
                 </div>
 
                 <div class="col-lg3">
-                    <input type="text" name="description" id="description" placeholder="description">
+                    <input type="text" name="description" id="description" placeholder="Description" style="padding-top: 5px; padding-bottom: 5px; padding-left:5px; padding-right: 5px">
                 </div>
             </div>
 
@@ -65,12 +65,12 @@
                 </div>
 
                 <div class="col-lg3">
-                    <input style="width: 185px;" type="file" name="image" id="image">
+                    <input style="width: 185px;" type="file" name="image" id="image" style="padding-top: 5px; padding-bottom: 5px; padding-left:5px; padding-right: 5px">
                 </div>
             </div>
 
             <div class="row justify-content-center">
-                <button type="submit">Add Pizza</button>
+                <button class="btn btn-danger" type="submit">Add Pizza</button>
             </div>
 
             @if($errors->any())

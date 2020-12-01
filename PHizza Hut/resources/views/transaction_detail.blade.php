@@ -1,27 +1,18 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('template.master')
 
-        <title></title>
+@section('title', 'Transaction Detail')
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
-    </head>
-    <body>
+@section('content')
         @foreach ($detail as $d)
-            {{$d->transaction_id}}
-            {{$d->pizza_id}}
-            {{$d->quantity}}
-            {{$d->total_price}}
-            {{$d->pizza_name}}
-            {{$d->description}}
-            {{$d->price}}
-            {{$d->image}}
-            <br>
-            <br>
+            <div class="media">
+                <img src="{{ url('assets/' . $d->image) }}" class="align-self-center mr-3" alt="pizza_image" width="270px" height="270px">
+                <div class="media-body ml-5 mt-4">
+                    <h3 class="mt-0">{{$d->pizza_name}}</h5>
+                    <p>Rp. {{$d->price}}</p>
+                    <p>Quantity: {{$d->quantity}}</p>
+                    <p>Total Price: Rp. {{$d->total_price}}</p>
+                </div>
+            </div>
+            <div style="background-color: red; height: 2px"></div>
         @endforeach
-    </body>
-</html>
+@endsection

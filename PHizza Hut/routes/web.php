@@ -34,7 +34,7 @@ Route::get('/deletepizza/{pizza_id}', 'PizzaController@delete')->name('delete_pi
 Route::any('/searchpizza', 'PizzaController@search')->name('search_pizza');
 
 Route::get('/transaction_history/{user_id}', 'TransactionController@viewAllTransactionByUserId')->name('transaction_history');
-Route::get('/transaction_detail/{transaction_id}', 'TransactionController@viewAllDetailTransactionById');
+Route::get('/transaction_detail/{transaction_id}', 'TransactionController@viewAllDetailTransactionById')->name('transaction_detail');
 Route::get('/transaction_history/{user_id}', 'TransactionController@viewAllTransactionByUserId')->name('transaction_history');
 Route::get('/all_transaction', 'TransactionController@viewAllTransaction')->name('all_transaction');
 

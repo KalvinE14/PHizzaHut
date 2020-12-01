@@ -70,7 +70,7 @@
                     </div>
 
                     <div>
-                        <button type="submit">Update Pizza</button>
+                        <button class="btn btn-danger" type="submit">Update Pizza</button>
                     </div>
                 </form>
                 @if($errors->any())

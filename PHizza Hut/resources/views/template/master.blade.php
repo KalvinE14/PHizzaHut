@@ -21,7 +21,7 @@
                     </div>
                 </a>
 
-                <div class="row ml-auto mr-4 align-self-center" style="padding-left: 85px;padding-right: 85px;">
+                <div class="row mt-3 ml-auto mr-4 align-self-center" style="padding-left: 85px;padding-right: 85px;">
                     @if(Session::get('username') && strcmp(Session::get('role'), "Member") == 0)
                         <div class="col-xs-6">
                             <a style="text-decoration: none;color: white;" href="{{ route('transaction_history', Session::get('user_id')) }}">View Transaction History</a>
@@ -40,7 +40,7 @@
                         </div>
 
                         <div class="col-xs-6">
-                            <p style="color: white;">{{ Session::get('username') }}|</p>
+                            <p style="color: white;">{{ Session::get('username') }}</p>
                         </div>
 
                         <div class="col-xs-6" style="margin-left: 10px; margin-right: 10px;">
@@ -95,7 +95,7 @@
             </div>
         </div>
         
-        <div class="body container" style="background-color: white; margin-top: 40px;">
+        <div class="body container pt-3 pb-3" style="background-color: white; margin-top: 40px;">
             @yield('content')
         </div>
     </div>
