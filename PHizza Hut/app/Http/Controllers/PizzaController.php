@@ -56,7 +56,7 @@ class PizzaController extends Controller
         $validator = Validator::make($request->all(), [
             'pizza_name' => 'required|max:20',
             'description' => 'required|min:20',
-            'price' => 'required|gt:10000',
+            'price' => 'required|gte:10000',
             'image' => 'required|image',
         ]);
 
