@@ -51,7 +51,7 @@
             </div>
 
             <div class="row justify-content-center" style="margin-bottom: 20px;">
-                <button type="submit">Login</button>
+                <button class="btn btn-danger" type="submit">Login</button>
             </div>
 
             <div class="row justify-content-center">

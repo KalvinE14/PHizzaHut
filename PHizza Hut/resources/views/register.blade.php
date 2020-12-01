@@ -126,7 +126,7 @@
             </div>
 
             <div class="row justify-content-center">
-                <button type="submit">Register</button>
+                <button class="btn btn-danger" type="submit">Register</button>
             </div>
 
             @if($errors->any())

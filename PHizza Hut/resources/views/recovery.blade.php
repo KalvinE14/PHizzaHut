@@ -41,7 +41,7 @@
             </div>
 
             <div class="row justify-content-center" style="margin-bottom: 20px;">
-                <button type="submit">Recover</button>
+                <button class="btn btn-danger" type="submit">Recover</button>
             </div>
 
             @if($errors->any())
