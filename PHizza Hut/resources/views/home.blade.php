@@ -27,10 +27,10 @@
 
     <div class="row" style="margin-left: 0px;margin-right: 0px;">
         @foreach($pizzas as $pizza)
-            <div class="col-lg3" style="margin-left: 31px;margin-right: 30px;border: solid red; border-radius: 10px;margin-top: 10px;margin-bottom: 10px;padding-top: 20px;padding-bottom: 20px;">
+            <div class="col-lg3" style="word-wrap: break-word; margin-left: 31px;margin-right: 30px;border: solid red; border-radius: 10px;margin-top: 10px;margin-bottom: 10px;padding-top: 20px;padding-bottom: 20px;">
                 <a style="text-decoration: none;color: black;" href="{{ route('pizza_detail', $pizza->pizza_id) }}">
                     <img id="logo" src="{{ url('assets/' . $pizza->image) }}" alt="" width="300px" height="250px">
-                    <p style="margin-left: 20px; font-size: 28px"><b>{{$pizza->pizza_name}}</b></p>
+                    <p style="margin-left: 20px; font-size: 20px"><b>{{$pizza->pizza_name}}</b></p>
                     <p style="margin-left: 20px;">Rp. {{$pizza->price}}</p>
                     @if(Session::get('username') && Session::get('role') == 'Admin')
                         <div class="container" style="text-align: center">

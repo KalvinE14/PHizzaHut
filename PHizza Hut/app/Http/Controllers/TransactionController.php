@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Session;
 class TransactionController extends Controller
 {
     public function viewAllTransactionByUserId($user_id){
-        if(!Session::get('username')){
+        if(!Session::get('username') || Session::get('role') == 'Admin' ){
             return redirect()->route('home');
         }
         $transactions = TransactionHeader::where('user_id', $user_id)->get();

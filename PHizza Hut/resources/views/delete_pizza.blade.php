@@ -9,7 +9,7 @@
                 <img id="pizza_img" src="{{ url('assets/' . $p->image) }}" alt="" width="300px" height="300px">
             </div>
 
-            <div class="col-lg3 align-self-center" style="width: 600px;">
+            <div class="col-lg3 align-self-center text-break" style="width: 600px;  word-wrap: break-word">
                 <h1 style="margin-bottom: 30px;">{{ $p->pizza_name }}</h1>
                 <p style="margin-bottom: 30px;">{{ $p->description }}</p>
                 <p style="margin-bottom: 30px;">Rp. {{ $p->price }}</p>

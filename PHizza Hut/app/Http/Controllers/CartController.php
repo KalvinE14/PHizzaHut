@@ -17,7 +17,7 @@ use Symfony\Component\Console\Input\Input;
 class CartController extends Controller
 {
     public function viewCartByUserId($user_id){
-        if(!Session::get('username')){
+        if(!Session::get('username') || Session::get('role') == 'Admin'){
             return redirect()->route('home');
         }
         $allcart = Cart::join('pizzas', 'carts.pizza_id', '=', 'pizzas.pizza_id')->where('user_id', $user_id)->get();
