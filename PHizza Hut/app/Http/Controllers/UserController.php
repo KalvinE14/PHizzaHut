@@ -42,6 +42,11 @@ class UserController extends Controller
      */
     public function create()
     {
+        if(Session::get('username'))
+        {
+            return redirect()->route('home');
+        }
+
         return view('register');
     }
 
@@ -163,7 +168,7 @@ class UserController extends Controller
 
     public function showLoginPage()
     {
-        if(Cookie::get('email') && Cookie::get('password'))
+        if(Session::get('username'))
         {
             return redirect()->route('home');
         }
@@ -184,7 +189,7 @@ class UserController extends Controller
 
     public function showRecoveryPage()
     {
-        if(Cookie::get('email') && Cookie::get('password'))
+        if(Session::get('username'))
         {
             return redirect()->route('home');
         }
