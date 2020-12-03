@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
@@ -132,22 +134,18 @@ class UserController extends Controller
 
     public function doLogin(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'email' => 'required',
-            'password' => 'required',
-        ]);
+        $email = $request->email;
+        $password = $request->password;
 
-        if($validator->fails()){
-            return view('login')->withErrors($validator->errors());
-        }
-
-        $email = $request->get('email');
-        $password = $request->get('password');
-
-        $user = User::where('email', 'LIKE', $email)->where('password', 'LIKE', $password)->get();
-
-        if(count($user) == 1)
+        if(Auth::attempt([
+            'email' => $email,
+            'password' => $password
+        ], false))
         {
+            $user = User::where('email', 'LIKE', $email)->get();
+
+            dump($user);
+
             foreach($user as $u)
             {
                 Session::put('username', $u->username);
@@ -156,23 +154,31 @@ class UserController extends Controller
             }
             if($request->has('remember'))
             {
-                Cookie::queue('email', $email, 120);
-                Cookie::queue('password', $password, 120);
+                $user = Auth::user();
+                Cookie::queue('email', $user->email, 120);
+                Cookie::queue('password', $user->password, 120);
             }
+            print('aaa');
+
+            print("Session username: " . Session::get('username') . "\n");
+            print("Session role: " . Session::get('role') . "\n");
+
+            print("Cookie email: " . Cookie::get('email') . "\n");
+
+            Session::save();
             return redirect()->route('home');
-        }else
-        {
-            return redirect()->route('login_page')->withErrors(['warning' => 'Incorect email and/or password']);
         }
+
+        dump(Auth::attempt([
+            'email' => $email,
+            'password' => $password
+        ], false));
+
+        // return redirect()->back()->withErrors(['warning' => 'Incorect email and/or password']);
     }
 
     public function showLoginPage()
     {
-        if(Session::get('username'))
-        {
-            return redirect()->route('home');
-        }
-
         return view('login');
     }
 
