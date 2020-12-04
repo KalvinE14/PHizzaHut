@@ -61,7 +61,7 @@ class PizzaController extends Controller
         ]);
 
         if($validator->fails()){
-            return view('create_pizza')->withErrors($validator->errors());
+            return redirect()->back()->withErrors($validator->errors());
         }
 
         Pizza::create([
@@ -108,11 +108,6 @@ class PizzaController extends Controller
 
             if(strcmp($role, "Admin") == 0)
             {
-                if(count($pizza) == 0)
-                {
-                    print('There is no pizza with that id');
-                }
-
                 return view('update_pizza', ['pizza' => $pizza]);
             }else
             {
@@ -142,7 +137,7 @@ class PizzaController extends Controller
         ]);
 
         if($validator->fails()){
-            return view('update_pizza', ['pizza' => $pizza])->withErrors($validator->errors());
+            return redirect()->back()->withErrors($validator->errors());
         }
 
         Pizza::where('pizza_id', '=', $id)->update([
@@ -180,11 +175,6 @@ class PizzaController extends Controller
 
             if(strcmp($role, "Admin") == 0)
             {
-                if(count($pizza) == 0)
-                {
-                    print('There is no pizza with that id');
-                }
-
                 return view('delete_pizza', ['pizza' => $pizza]);
             }else
             {

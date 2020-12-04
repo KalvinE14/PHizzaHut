@@ -71,7 +71,7 @@ class UserController extends Controller
         ]);
 
         if($validator->fails()){
-            return view('register')->withErrors($validator->errors());
+            return redirect()->back()->withErrors($validator->errors());
         }
 
         User::create([
@@ -210,7 +210,7 @@ class UserController extends Controller
             return redirect()->route('login_page');
         }else
         {
-            return redirect()->route('recovery_page')->withErrors(['warning' => 'Incorrect email, please input your email correctly']);
+            return redirect()->back()->withErrors(['warning' => 'Incorrect email, please input your email correctly']);
         }
     }
 }
