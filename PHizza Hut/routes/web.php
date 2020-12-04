@@ -13,34 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', 'PizzaController@index')->name('home');
-
-
-
-// Route::group(['middleware' => 'user'], function(){
-//     Route::get('/', 'PizzaController@index')->name('home');
-// });
-
 Route::get('/', 'PizzaController@index')->name('home');
 
-Route::group(['middleware' => 'web'], function(){
-    Route::group(['middleware' => 'user'], function(){
-        
-    });
-    Route::group(['middleware' => 'guest'], function(){
-        Route::get('/login', 'UserController@showLoginPage')->name('login_page');
-        Route::post('/login', 'UserController@doLogin')->name('login');
-        Route::post('/register', 'UserController@store')->name('register');
-        Route::get('/register', 'UserController@create')->name('register_page');
-        Route::get('/recovery', 'UserController@showRecoveryPage')->name('recovery_page');
-        Route::post('/recovery', 'UserController@recoveryAccount')->name('recovery_account');
-    });
-});
-
-
+Route::get('/login', 'UserController@showLoginPage')->name('login_page');
+Route::post('/login', 'UserController@doLogin')->name('login');
+Route::post('/register', 'UserController@store')->name('register');
+Route::get('/register', 'UserController@create')->name('register_page');
+Route::get('/recovery', 'UserController@showRecoveryPage')->name('recovery_page');
+Route::post('/recovery', 'UserController@recoveryAccount')->name('recovery_account');
 Route::get('/alluser', 'UserController@index')->name('all_user');
 Route::get('/logout', 'UserController@logout')->name('logout');
-
 Route::get('/pizzadetail/{pizza_id}', 'PizzaController@show')->name('pizza_detail');
 Route::post('/createpizza', 'PizzaController@store')->name('create_pizza');
 Route::get('/createpizza', 'PizzaController@create')->name('create_pizza_page');

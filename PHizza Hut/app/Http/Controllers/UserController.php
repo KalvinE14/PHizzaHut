@@ -137,15 +137,10 @@ class UserController extends Controller
         $email = $request->email;
         $password = $request->password;
 
-        if(Auth::attempt([
-            'email' => $email,
-            'password' => $password
-        ], false))
+        $user = User::where('email', 'LIKE', $email)->where('password', 'LIKE', $password)->get();
+
+        if(count($user) == 1)
         {
-            $user = User::where('email', 'LIKE', $email)->get();
-
-            dump($user);
-
             foreach($user as $u)
             {
                 Session::put('username', $u->username);
@@ -154,27 +149,14 @@ class UserController extends Controller
             }
             if($request->has('remember'))
             {
-                $user = Auth::user();
-                Cookie::queue('email', $user->email, 120);
-                Cookie::queue('password', $user->password, 120);
+                Cookie::queue('email', $u->email, 120);
+                Cookie::queue('password', $u->password, 120);
             }
-            print('aaa');
-
-            print("Session username: " . Session::get('username') . "\n");
-            print("Session role: " . Session::get('role') . "\n");
-
-            print("Cookie email: " . Cookie::get('email') . "\n");
-
-            Session::save();
+            
             return redirect()->route('home');
         }
 
-        dump(Auth::attempt([
-            'email' => $email,
-            'password' => $password
-        ], false));
-
-        // return redirect()->back()->withErrors(['warning' => 'Incorect email and/or password']);
+        return redirect()->back()->withErrors(['warning' => 'Incorect email and/or password']);
     }
 
     public function showLoginPage()
