@@ -161,6 +161,11 @@ class UserController extends Controller
 
     public function showLoginPage()
     {
+        if(Session::get('username'))
+        {
+            return redirect()->route('home');
+        }
+        
         return view('login');
     }
 
